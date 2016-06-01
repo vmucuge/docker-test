@@ -1,0 +1,321 @@
+$ docker build -t vgm/hellop:v0.1 .
+Sending build context to Docker daemon  5.12 kB
+Step 1 : FROM ruby:2.2.0
+2.2.0: Pulling from library/ruby
+a3ed95caeb02: Already exists
+453d13af6c96: Pulling fs layer
+a3ed95caeb02: Pulling fs layer
+65bb55baec9b: Pulling fs layer
+dcb8d2043cc2: Pulling fs layer
+52f3d8b24a47: Pulling fs layer
+23a7d0052e00: Pulling fs layer
+75a6756e6a02: Pulling fs layer
+56162a215fa6: Pulling fs layer
+52f3d8b24a47: Waiting
+23a7d0052e00: Waiting
+75a6756e6a02: Waiting
+56162a215fa6: Waiting
+65bb55baec9b: Verifying Checksum
+65bb55baec9b: Download complete
+dcb8d2043cc2: Verifying Checksum
+dcb8d2043cc2: Download complete
+52f3d8b24a47: Verifying Checksum
+52f3d8b24a47: Download complete
+453d13af6c96: Verifying Checksum
+453d13af6c96: Download complete
+75a6756e6a02: Verifying Checksum
+75a6756e6a02: Download complete
+23a7d0052e00: Verifying Checksum
+23a7d0052e00: Download complete
+56162a215fa6: Verifying Checksum
+56162a215fa6: Download complete
+453d13af6c96: Pull complete
+65bb55baec9b: Pull complete
+dcb8d2043cc2: Pull complete
+52f3d8b24a47: Pull complete
+23a7d0052e00: Pull complete
+75a6756e6a02: Pull complete
+56162a215fa6: Pull complete
+Digest: sha256:ac0c5befb1adfd9a8a2caed1193a7fd3f858b4e89c7a5460b37d3174069852e8
+Status: Image is up to date for ruby:2.2.0
+ ---> bc5beaf30723
+Step 2 : MAINTAINER Vinicius Mucuge <viniciusmucuge@gmail.com>
+ ---> Running in ddc69fa951b1
+ ---> 3894967cecfb
+Removing intermediate container ddc69fa951b1
+Step 3 : ENV APP hello-world
+ ---> Running in 8ba67d841b61
+ ---> b05e1e646881
+Removing intermediate container 8ba67d841b61
+Step 4 : ENV VERSION v0.1
+ ---> Running in 0788ea597be9
+ ---> dbf258831e1b
+Removing intermediate container 0788ea597be9
+Step 5 : ENV REDIS_HOST redis_01
+ ---> Running in 067b6090cb14
+ ---> c4dc741e1c03
+Removing intermediate container 067b6090cb14
+Step 6 : ENV REDIS_PORT 6379
+ ---> Running in aaf4b9c7d5b4
+ ---> 6b5e8baf1e79
+Removing intermediate container aaf4b9c7d5b4
+Step 7 : ENV LOAD_BALANCER lb_01
+ ---> Running in 8f206b3ddf75
+ ---> 76fa35dab573
+Removing intermediate container 8f206b3ddf75
+Step 8 : ENV PROXY 10.99.164.219:3128
+ ---> Running in afb4ca662805
+ ---> c77072a39ec7
+Removing intermediate container afb4ca662805
+Step 9 : ENV https_proxy http://$PROXY
+ ---> Running in baf77b7f7deb
+ ---> 41019f2ec38b
+Removing intermediate container baf77b7f7deb
+Step 10 : ENV http_proxy http://$PROXY
+ ---> Running in 704df3ee9d9d
+ ---> b7bc7a044a0d
+Removing intermediate container 704df3ee9d9d
+Step 11 : ENV no_proxy "localhost, 127.0.0.1, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16"
+ ---> Running in 600ca00f2582
+ ---> f046c56e553d
+Removing intermediate container 600ca00f2582
+Step 12 : RUN apt-get update && apt-get install -y curl                                          git                                           ruby                                          ruby-dev                                          build-essential                                          nodejs                                          rubygems
+ ---> Running in b90189128935
+Get:1 http://security.debian.org jessie/updates InRelease [63.1 kB]
+Get:2 http://security.debian.org jessie/updates/main amd64 Packages [313 kB]
+Get:3 http://http.debian.net jessie-updates InRelease [142 kB]
+Ign http://http.debian.net jessie InRelease
+Get:4 http://http.debian.net jessie Release.gpg [2373 B]
+Get:5 http://http.debian.net jessie-updates/main amd64 Packages [9283 B]
+Get:6 http://http.debian.net jessie Release [148 kB]
+Get:7 http://http.debian.net jessie/main amd64 Packages [9034 kB]
+Fetched 9712 kB in 16s (576 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+build-essential is already the newest version.
+The following package was automatically installed and is no longer required:
+  libbison-dev
+Use 'apt-get autoremove' to remove it.
+The following extra packages will be installed:
+  libc-ares2 libcurl3 libcurl4-openssl-dev libgmp-dev libgmpxx4ldbl libruby2.1
+  libv8-3.14.5 ruby2.1 ruby2.1-dev rubygems-integration
+Suggested packages:
+  gettext-base git-daemon-run git-daemon-sysvinit git-doc git-el git-email
+  git-gui gitk gitweb git-arch git-cvs git-mediawiki git-svn libcurl4-doc
+  libcurl3-dbg libidn11-dev libkrb5-dev libldap2-dev librtmp-dev libssh2-1-dev
+  libgmp10-doc libmpfr-dev ri bundler
+Recommended packages:
+  less rsync
+The following NEW packages will be installed:
+  libc-ares2 libgmp-dev libgmpxx4ldbl libruby2.1 libv8-3.14.5 nodejs ruby
+  ruby-dev ruby2.1 ruby2.1-dev rubygems-integration
+The following packages will be upgraded:
+  curl git libcurl3 libcurl4-openssl-dev
+4 upgraded, 11 newly installed, 0 to remove and 193 not upgraded.
+Need to get 11.4 MB of archives.
+After this operation, 28.7 MB of additional disk space will be used.
+Get:1 http://http.debian.net/debian/ jessie/main libcurl4-openssl-dev amd64 7.38.0-4+deb8u3 [336 kB]
+Get:2 http://http.debian.net/debian/ jessie/main libcurl3 amd64 7.38.0-4+deb8u3 [259 kB]
+Get:3 http://http.debian.net/debian/ jessie/main curl amd64 7.38.0-4+deb8u3 [200 kB]
+Get:4 http://http.debian.net/debian/ jessie/main libgmpxx4ldbl amd64 2:6.0.0+dfsg-6 [22.1 kB]
+Get:5 http://http.debian.net/debian/ jessie/main rubygems-integration all 1.8 [4514 B]
+Get:6 http://http.debian.net/debian/ jessie/main libc-ares2 amd64 1.10.0-2 [76.7 kB]
+Get:7 http://http.debian.net/debian/ jessie/main libv8-3.14.5 amd64 3.14.5.8-8.1 [1269 kB]
+Get:8 http://http.debian.net/debian/ jessie/main git amd64 1:2.1.4-2.1+deb8u2 [3262 kB]
+Get:9 http://http.debian.net/debian/ jessie/main ruby-dev all 1:2.1.5+deb8u2 [8364 B]
+Get:10 http://http.debian.net/debian/ jessie/main nodejs amd64 0.10.29~dfsg-2 [648 kB]
+Get:11 http://http.debian.net/debian/ jessie/main libgmp-dev amd64 2:6.0.0+dfsg-6 [621 kB]
+Get:12 http://http.debian.net/debian/ jessie/main libruby2.1 amd64 2.1.5-2+deb8u2 [3278 kB]
+Get:13 http://http.debian.net/debian/ jessie/main ruby2.1 amd64 2.1.5-2+deb8u2 [275 kB]
+Get:14 http://http.debian.net/debian/ jessie/main ruby all 1:2.1.5+deb8u2 [9688 B]
+Get:15 http://http.debian.net/debian/ jessie/main ruby2.1-dev amd64 2.1.5-2+deb8u2 [1101 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 11.4 MB in 11s (970 kB/s)
+(Reading database ... 27879 files and directories currently installed.)
+Preparing to unpack .../libcurl4-openssl-dev_7.38.0-4+deb8u3_amd64.deb ...
+Unpacking libcurl4-openssl-dev:amd64 (7.38.0-4+deb8u3) over (7.38.0-4) ...
+Preparing to unpack .../curl_7.38.0-4+deb8u3_amd64.deb ...
+Unpacking curl (7.38.0-4+deb8u3) over (7.38.0-4) ...
+Preparing to unpack .../libcurl3_7.38.0-4+deb8u3_amd64.deb ...
+Unpacking libcurl3:amd64 (7.38.0-4+deb8u3) over (7.38.0-4) ...
+Selecting previously unselected package libgmpxx4ldbl:amd64.
+Preparing to unpack .../libgmpxx4ldbl_2%3a6.0.0+dfsg-6_amd64.deb ...
+Unpacking libgmpxx4ldbl:amd64 (2:6.0.0+dfsg-6) ...
+Selecting previously unselected package libc-ares2:amd64.
+Preparing to unpack .../libc-ares2_1.10.0-2_amd64.deb ...
+Unpacking libc-ares2:amd64 (1.10.0-2) ...
+Preparing to unpack .../git_1%3a2.1.4-2.1+deb8u2_amd64.deb ...
+Unpacking git (1:2.1.4-2.1+deb8u2) over (1:2.1.4-2) ...
+Selecting previously unselected package libgmp-dev:amd64.
+Preparing to unpack .../libgmp-dev_2%3a6.0.0+dfsg-6_amd64.deb ...
+Unpacking libgmp-dev:amd64 (2:6.0.0+dfsg-6) ...
+Selecting previously unselected package libv8-3.14.5.
+Preparing to unpack .../libv8-3.14.5_3.14.5.8-8.1_amd64.deb ...
+Unpacking libv8-3.14.5 (3.14.5.8-8.1) ...
+Selecting previously unselected package rubygems-integration.
+Preparing to unpack .../rubygems-integration_1.8_all.deb ...
+Unpacking rubygems-integration (1.8) ...
+Selecting previously unselected package libruby2.1:amd64.
+Preparing to unpack .../libruby2.1_2.1.5-2+deb8u2_amd64.deb ...
+Unpacking libruby2.1:amd64 (2.1.5-2+deb8u2) ...
+Selecting previously unselected package ruby2.1.
+Preparing to unpack .../ruby2.1_2.1.5-2+deb8u2_amd64.deb ...
+Unpacking ruby2.1 (2.1.5-2+deb8u2) ...
+Selecting previously unselected package ruby.
+Preparing to unpack .../ruby_1%3a2.1.5+deb8u2_all.deb ...
+Unpacking ruby (1:2.1.5+deb8u2) ...
+Selecting previously unselected package ruby2.1-dev:amd64.
+Preparing to unpack .../ruby2.1-dev_2.1.5-2+deb8u2_amd64.deb ...
+Unpacking ruby2.1-dev:amd64 (2.1.5-2+deb8u2) ...
+Selecting previously unselected package ruby-dev.
+Preparing to unpack .../ruby-dev_1%3a2.1.5+deb8u2_all.deb ...
+Unpacking ruby-dev (1:2.1.5+deb8u2) ...
+Selecting previously unselected package nodejs.
+Preparing to unpack .../nodejs_0.10.29~dfsg-2_amd64.deb ...
+Unpacking nodejs (0.10.29~dfsg-2) ...
+Setting up libcurl3:amd64 (7.38.0-4+deb8u3) ...
+Setting up libcurl4-openssl-dev:amd64 (7.38.0-4+deb8u3) ...
+Setting up curl (7.38.0-4+deb8u3) ...
+Setting up libgmpxx4ldbl:amd64 (2:6.0.0+dfsg-6) ...
+Setting up libc-ares2:amd64 (1.10.0-2) ...
+Setting up git (1:2.1.4-2.1+deb8u2) ...
+Setting up libgmp-dev:amd64 (2:6.0.0+dfsg-6) ...
+Setting up libv8-3.14.5 (3.14.5.8-8.1) ...
+Setting up rubygems-integration (1.8) ...
+Setting up libruby2.1:amd64 (2.1.5-2+deb8u2) ...
+Setting up ruby2.1 (2.1.5-2+deb8u2) ...
+Setting up ruby (1:2.1.5+deb8u2) ...
+Setting up ruby2.1-dev:amd64 (2.1.5-2+deb8u2) ...
+Setting up ruby-dev (1:2.1.5+deb8u2) ...
+Setting up nodejs (0.10.29~dfsg-2) ...
+update-alternatives: using /usr/bin/nodejs to provide /usr/bin/js (js) in auto mode
+Processing triggers for libc-bin (2.19-13) ...
+ ---> 1c9ad1e9b719
+Removing intermediate container b90189128935
+Step 13 : RUN mkdir /hello-app
+ ---> Running in 07a7e2a3d37b
+ ---> 72ac3cba3c2d
+Removing intermediate container 07a7e2a3d37b
+Step 14 : WORKDIR /hello-app
+ ---> Running in 6f01aaab7405
+ ---> 6f46d3d1aa6d
+Removing intermediate container 6f01aaab7405
+Step 15 : ADD Gemfile /hello-app/Gemfile
+ ---> 0c63f40c57e5
+Removing intermediate container 8cb61175afa6
+Step 16 : ADD Gemfile.lock /hello-app/Gemfile.lock
+ ---> a578d80daaa2
+Removing intermediate container dc8b08b7138b
+Step 17 : RUN bundle install
+ ---> Running in a24e73a4fc43
+Don't run Bundler as root. Bundler can ask for sudo if it is needed, and
+installing your bundle as root will break this application for all non-root
+users on this machine.
+Fetching gem metadata from https://rubygems.org/..........
+Resolving dependencies...
+Installing rack 1.6.4
+Installing rack-protection 1.5.3
+Installing redis 3.3.0
+Installing tilt 2.0.4
+Installing sinatra 1.4.7
+Using bundler 1.7.12
+Your bundle is complete!
+It was installed into /usr/local/bundle
+ ---> bc545a6698ea
+Removing intermediate container a24e73a4fc43
+Step 18 : ADD . /hello-app
+ ---> 527ae4f88c95
+Removing intermediate container d80c79ca27ec
+Step 19 : EXPOSE 4567
+ ---> Running in f958e774cece
+ ---> b4dc980bc54a
+Removing intermediate container f958e774cece
+Step 20 : CMD ruby /hello-app/hello-world.rb
+ ---> Running in 17b584e20235
+ ---> c072765c83cf
+Removing intermediate container 17b584e20235
+Successfully built c072765c83cf
+
+
+$ docker build -t vgm/helloapp:v0.1 .
+Sending build context to Docker daemon  5.12 kB
+Step 1 : FROM ruby:2.2.0
+ ---> bc5beaf30723
+Step 2 : MAINTAINER Vinicius Mucuge <viniciusmucuge@gmail.com>
+ ---> Using cache
+ ---> 3894967cecfb
+Step 3 : ENV APP hello-world
+ ---> Using cache
+ ---> b05e1e646881
+Step 4 : ENV VERSION v0.1
+ ---> Using cache
+ ---> dbf258831e1b
+Step 5 : ENV REDIS_HOST redis_01
+ ---> Using cache
+ ---> c4dc741e1c03
+Step 6 : ENV REDIS_PORT 6379
+ ---> Using cache
+ ---> 6b5e8baf1e79
+Step 7 : ENV LOAD_BALANCER lb_01
+ ---> Using cache
+ ---> 76fa35dab573
+Step 8 : ENV PROXY 10.99.164.219:3128
+ ---> Using cache
+ ---> c77072a39ec7
+Step 9 : ENV https_proxy http://$PROXY
+ ---> Using cache
+ ---> 41019f2ec38b
+Step 10 : ENV http_proxy http://$PROXY
+ ---> Using cache
+ ---> b7bc7a044a0d
+Step 11 : ENV no_proxy "localhost, 127.0.0.1, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16"
+ ---> Using cache
+ ---> f046c56e553d
+Step 12 : RUN apt-get update && apt-get install -y curl                                          git                                           ruby                                          ruby-dev                                          build-essential                                          nodejs                                          rubygems
+ ---> Using cache
+ ---> 1c9ad1e9b719
+Step 13 : RUN mkdir /hello-app
+ ---> Using cache
+ ---> 72ac3cba3c2d
+Step 14 : WORKDIR /hello-app
+ ---> Using cache
+ ---> 6f46d3d1aa6d
+Step 15 : ADD Gemfile /hello-app/Gemfile
+ ---> Using cache
+ ---> 0c63f40c57e5
+Step 16 : ADD Gemfile.lock /hello-app/Gemfile.lock
+ ---> Using cache
+ ---> a578d80daaa2
+Step 17 : RUN bundle install
+ ---> Using cache
+ ---> bc545a6698ea
+Step 18 : ADD . /hello-app
+ ---> Using cache
+ ---> 527ae4f88c95
+Step 19 : EXPOSE 4567
+ ---> Using cache
+ ---> b4dc980bc54a
+Step 20 : CMD ruby /hello-app/hello-world.rb
+ ---> Using cache
+ ---> c072765c83cf
+Successfully built c072765c83cf
+
+$ docker images
+REPOSITORY          TAG                 IMAGE ID            CREATED              SIZE
+vgm/hello           v0.1                14c65e5fb23b        34 seconds ago       841.8 MB
+vgm/helloapp        v0.1                c072765c83cf        About a minute ago   841.8 MB
+
+$ docker run -d -p 4567:4567 --name helloapp --hostname helloapp vgm/hello:v0.1
+fe1287131545465d4995bb7529eded3a821a9f50f616c96c6efdac8df01ac737
+
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                           NAMES
+fe1287131545        vgm/hello:v0.1      "ruby /hello-app/hell"   2 minutes ago       Up 2 minutes        192.168.99.102:4567->4567/tcp   swarm-manager/helloapp
+
+$ docker logs -f helloapp
+[2016-05-31 10:32:16] INFO  WEBrick 1.3.1
+[2016-05-31 10:32:16] INFO  ruby 2.2.0 (2014-12-25) [x86_64-linux]
+== Sinatra (v1.4.7) has taken the stage on 4567 for development with backup from WEBrick
+[2016-05-31 10:32:16] INFO  WEBrick::HTTPServer#start: pid=1 port=4567

@@ -1,0 +1,52 @@
+---
+version: '2'
+
+services:
+
+  redis:
+    image: redis
+    expose:
+     - "6379"
+
+  appservera:
+    image: vgm/helloapp:v0.2
+    expose:
+      - "4567"
+    depends_on:
+      - redis
+    links:
+      - redis
+    environment:
+      REDIS_HOST: redis
+
+  appserverb:
+    image: vgm/helloapp:v0.2
+    expose:
+      - "4567"
+    depends_on:
+      - redis
+    links:
+      - redis
+    environment:
+      REDIS_HOST: redis
+
+  lb:
+    build: lb/.
+    links:
+     - appservera
+     - appserverb
+     - redis
+    environment:
+     APP_1: appservera
+     APP_2: appserverb
+    expose:
+     - "70"
+     - "80"
+     - "8080"
+    ports:
+     - "70:70"
+     - "80:80"
+     - "8080"
+    depends_on:
+     - appservera
+     - appserverb
