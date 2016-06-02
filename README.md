@@ -78,7 +78,7 @@ Clone this repo run the following commands:
   $ git checkout test
   $ ./build_ct app
   $ ./build_ct lb
-  .... You may see lots of output
+   .... You may see lots of output
   $ docker images
   REPOSITORY                       TAG                 IMAGE ID            CREATED             SIZE
   3scale/lb                        latest              889ac2e35749        5 seconds ago       139.1 MB
@@ -90,13 +90,13 @@ With the images on place, now let's manually spin up the containers in order of 
  1 - Redis
  
  ```
- $ docker run --name redis --hostname redis -d redis
- 6e913f392eb81a2eec3bf95595377224c99f018abae93359568ba0821a963c66
+  $ docker run --name redis --hostname redis -d redis
+  6e913f392eb81a2eec3bf95595377224c99f018abae93359568ba0821a963c66
 
- $ docker ps
- CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS
- 6e913f392eb8        redis               "docker-entrypoint.sh"   17 seconds ago      Up 16 seconds       6379/tcp
-```
+  $ docker ps
+  CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS
+  6e913f392eb8        redis               "docker-entrypoint.sh"   17 seconds ago      Up 16 seconds       6379/tcp
+ ```
 
  2 - Ruby workers
  ```
@@ -127,7 +127,8 @@ So now, let's "compose" the proposed scenario.
 
 Take a look at the docker-compose.yml file and change whatever necessary to adapt to your case.
 
-Then you need to run the command:
+Note: You have to build the images for LB and APP before using docker-compose, the intention here is showing a mix of how to create your test environment. As we already hace created the image following the instructions above, let's assume that you have everything in place.
+
 ```
  $ docker-compose up -d
  Creating dockertest_redis_1
@@ -142,7 +143,7 @@ Remember the IP of the Docker Machine Host? In my case I've got the following ad
 
 As we are not in a configuration with IPAM and Service Discovery, I've just added the IP resolving to the hello.test.app.
 
-LINUX/OSX - /etc/hosts
+LINUX/OSX: /etc/hosts
 
 Windows: C:\Windows\System32\drivers\etc\hosts
 
@@ -217,6 +218,8 @@ That's it!
  - Provision in AWS or Docker Cloud
 
 Thanks for trying, suggestions are more than welcome!
+
+Good luck
 
 
 
