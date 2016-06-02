@@ -1,0 +1,72 @@
+#!/bin/bash
+set -e
+OPTION="$1"
+NEW_VERSION="$2"
+VERSION="${NEWVERSION:=latest}"
+
+function usage {
+  echo "This script will build necessary images for this test"
+  echo "If no parameter version is provided, will be tagged as 'latest'"
+  echo "Pass the verion as a secong argument in the command"
+  echo "Command usage:"
+  echo "  - Pull and create APP and LB containters:"
+  echo "    $0 all "
+  echo "  - Only pull the dependencies images: "
+  echo "    $0 pull"
+  echo "  - Create the app container: "
+  echo "    $0 app"
+  echo "  - Create the lb container: "
+  echo "    $0 lb"
+  echo "  - Change the version: "
+  echo "    $0 app v0.1"
+  echo "    $0 lb   1.0"
+  echo ""
+}
+
+function create_ctapp {
+  dir="app"
+  if [ ! -f $dir/Dockerfile ] ; then
+    echo "Dockerfile does not exist"
+    exit 1
+   else
+    echo "Create the image 3scale/helloapp"
+    docker build -t 3scale/helloapp:"${VERSION}" $dir/.
+  fi
+}
+
+function create_ctlb {
+  dir="lb"
+  if [ ! -f $dir/Dockerfile ] ; then
+    echo "Dockerfile does not exist"
+    exit 1
+   else
+    echo "Create the image 3scale/helloapp"
+    docker build -t 3scale/lb:"${VERSION}" $dir/.
+  fi
+}
+
+function pull_deps {
+  docker pull redis
+  docker pull haproxy
+  docker pull ruby:2.2.0
+}
+
+case $OPTION in
+  app)
+    create_ctapp
+  ;;
+  lb)
+    create_ctlb
+  ;;
+  all)
+    pull_deps
+    create_ctapp
+    create_ctlb
+  ;;
+  pull)
+    pull_deps
+  ;;
+  *)
+    usage
+  ;;
+esac
