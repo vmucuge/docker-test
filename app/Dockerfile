@@ -1,17 +1,18 @@
 FROM ruby:2.2.0
-MAINTAINER Vinicius Mucuge <viniciusmucuge@gmail.com>
+
+MAINTAINER 3Scale Dev <developer@3scale.com>
 
 ENV APP hello-world
 ENV VERSION ""
-ENV REDIS_HOST redis
-ENV REDIS_PORT 6379
-ENV LOAD_BALANCER lb
+ENV REDIS_HOST ""
+ENV REDIS_PORT ""
+ENV LB ""
 ENV APP_DIR /opt/3scale/hello-app
 
-ENV PROXY 10.99.164.219:3128
-ENV https_proxy http://$PROXY
-ENV http_proxy http://$PROXY
-ENV no_proxy "localhost, 127.0.0.1, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16"
+# ENV PROXY YOURPROXY:PORT
+# ENV https_proxy http://$PROXY
+# ENV http_proxy http://$PROXY
+# ENV no_proxy "localhost, 127.0.0.1, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16"
 
 RUN apt-get update && apt-get install -y curl \
                                          git  \
