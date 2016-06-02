@@ -25,6 +25,7 @@ Requirements:
  - Linux Docker Host or Docker Machine available (Tested on OSX/Windows - Docker Toolbox)
  - Docker Compose (Docker Toolbox)
  - Basic usage of scripting commands.
+ - Some shell CLI: git shell, cygwin or babun (if you are runing in Windows)
 
  * Software and libraries necessary (in the containers)
    - redis 
@@ -33,14 +34,14 @@ Requirements:
    - ruby
    - development tools
 
-### Creating the containers
+### Approach
+
  For this test we will work on different ways:
  - Dockerfiles
  - docker-compose
  
 The idea is to get more familiar with the usage of some docker and docker-compose commands:
  - docker build
- - docker tag
  - docker run
  - docker-compose
  
@@ -49,6 +50,8 @@ For the sake of this test, the  containers will be running in a single host, in 
  OSX - https://github.com/docker/toolbox/releases/download/v1.11.1b/DockerToolbox-1.11.1b.pkg
  
  WINDOWS - https://github.com/docker/toolbox/releases/download/v1.11.1b/DockerToolbox-1.11.1b.exe
+ 
+ Linux: https://docs.docker.com/engine/installation/
  
  Then create your dev/test machines with the following command:
  ```
@@ -108,11 +111,11 @@ With the images on place, now let's manually spin up the containers in order of 
 
  3 - HAproxy
  ```
-  $ docker run --name lb --link appservera --link appserverb -e APP_1="appservera" -e APP_2="appserverb" -p 81:80 -p 71:70 -p 8081:8080 -d 3scale/lb
+  $ docker run --name lb --link appservera --link appserverb -e APP_1="appservera" -e APP_2="appserverb" -p 80:80 -p 70:70 -d 3scale/lb
   cfc5133a07179c7e451456146b7c703d80b89bff3fbff3241a7b3826aa9b9438
   $ docker ps
   CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS        
-  cfc5133a0717        3scale/lb           "/docker-entrypoint.s"   5 seconds ago       Up 5 seconds        0.0.0.0:71->70/tcp, 0.0.0.0:81->80/tcp, 0.0.0.0:8081->8080/tcp
+  cfc5133a0717        3scale/lb           "/docker-entrypoint.s"   5 seconds ago       Up 5 seconds        0.0.0.0:70->70/tcp, 0.0.0.0:80->80/tcp
  ```
  
  OK, for now we just want to know if the containers can start.
