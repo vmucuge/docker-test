@@ -9,7 +9,7 @@ services:
      - "6379"
 
   appservera:
-    image: vgm/helloapp:v0.2
+    image: vgm/helloapp
     expose:
       - "4567"
     depends_on:
@@ -20,7 +20,7 @@ services:
       REDIS_HOST: redis
 
   appserverb:
-    image: vgm/helloapp:v0.2
+    image: vgm/helloapp
     expose:
       - "4567"
     depends_on:

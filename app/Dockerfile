@@ -2,7 +2,7 @@ FROM ruby:2.2.0
 MAINTAINER Vinicius Mucuge <viniciusmucuge@gmail.com>
 
 ENV APP hello-world
-ENV VERSION v0.2
+ENV VERSION ""
 ENV REDIS_HOST redis
 ENV REDIS_PORT 6379
 ENV LOAD_BALANCER lb
