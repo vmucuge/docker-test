@@ -28,8 +28,25 @@ docker-test in Ubuntu Linux
   Successfully built 5ffe18c0d604
 ```
 
+## Build images
+```
+ $ chmod +x build_ct
+ $ ./build_ct all
+```
+
+## Run containers manually
+```
+ $ chmod +x run_ct
+ $ ./run_ct
+```
+Then destroy it to run with docker-compose later
+```
+ $ chmod +x destroy_ct
+ $ ./destroy_ct
+```
+
 ## docker-compose
-With the image created, let's run docker-compose.
+With the images created, let's run with docker-compose.
 
 ```
 $ docker-compose up -d
