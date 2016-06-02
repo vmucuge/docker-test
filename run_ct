@@ -1,0 +1,6 @@
+#!/bin/bash
+
+docker run --name redis --hostname redis -d redis
+docker run -d --name appservera --link redis --link lb 3scale/helloapp
+docker run -d --name appserverb --link redis --link lb 3scale/helloapp
+docker run --name lb --link appservera --link appserverb -e APP_1="appservera" -e APP_2="appserverb" -p 80:80 -p 70:70 -d 3scale/lb
