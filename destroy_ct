@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for i in redis lb appservera appserveb ; do
+  docker rm -f $i
+done
