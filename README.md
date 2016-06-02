@@ -9,7 +9,7 @@ The diagram:
     
                               +--------------+
                     +--------->              +----------+
-            PUBLIC |         |   RUBY APP   |          |
+                    |         |   RUBY APP   |          |
              +------+-+       |   TCP/4567   |     +----v------+
       PUBLIC |        |       +--------------+     |           |
     +-------->   LB   |         INTERNAL           |   REDIS   |
@@ -45,21 +45,28 @@ The idea is to get more familiar with the usage of some docker and docker-compos
  - docker-compose
  
 For the sake of this test, the  containers will be running in a single host, in Docker Machine using Virtualbox, so please if you are running that on Windows or OSX, install it first from:
+
  OSX - https://github.com/docker/toolbox/releases/download/v1.11.1b/DockerToolbox-1.11.1b.pkg
+ 
  WINDOWS - https://github.com/docker/toolbox/releases/download/v1.11.1b/DockerToolbox-1.11.1b.exe
  
  Then create your dev/test machines with the following command:
- $ docker-machine create -d virtualbox docker-machine-01
- Once the machine is running, load the variables to your current terminal session:
  ```
- $ eval $(docker-machine env docker-machine-01)
- $ docker-machine ls
+ $ docker-machine create -d virtualbox docker-machine-01
+ ```
+ 
+ Once the machine is running, load the variables to your current terminal session:
+ 
+ ```
+  $ eval $(docker-machine env docker-machine-01)
+  $ docker-machine ls
    NAME                ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER    ERRORS
    docker-machine-01   *        virtualbox   Running   tcp://192.168.99.100:2376           v1.11.1
  ```
+ !! Take note of the IP address of the Docker Machine !!
 
 ## Let's go!
-
+With that in place, is time to try something.
 In order to create/build the images, we will use a simple script to automate this task.
  - Assure that the Dockerfiles in both app and lb folders are correct.  
  - Get familiar with the names and variables, even that is a very simple case. We will need it later.
@@ -113,8 +120,11 @@ With the images on place, now let's manually spin up the containers in order of 
 ### Compose
 
 Our intention now is having the images created, create a way of provison and link the pieces together.
+
 For this we will use docker-compose, that will allow us to create the environment as infrastructure as code.
+
 So now, let's "compose" the proposed scenario.
+
 Take a look at the docker-compose.yml file and change whatever necessary to adapt to your case.
 
 Then you need to run the command:
