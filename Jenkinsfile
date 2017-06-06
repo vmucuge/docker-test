@@ -45,6 +45,10 @@ echo $HOME'''
           "Check for gcloud": {
             sh 'which cloud'
             
+          },
+          "Check for apt-get": {
+            sh 'which apt-get'
+            
           }
         )
       }
