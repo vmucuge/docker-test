@@ -22,7 +22,17 @@ pipeline {
     }
     stage('Smoke Test') {
       steps {
-        sleep 10
+        parallel(
+          "Smoke Test": {
+            sleep 10
+            
+          },
+          "Listing all the necessary files": {
+            sh '''ls /
+echo $HOME'''
+            
+          }
+        )
       }
     }
   }
