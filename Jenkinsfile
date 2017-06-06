@@ -20,5 +20,10 @@ pipeline {
         )
       }
     }
+    stage('Smoke Test') {
+      steps {
+        sleep 10
+      }
+    }
   }
 }
