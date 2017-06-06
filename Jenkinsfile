@@ -8,7 +8,16 @@ pipeline {
     }
     stage('Test') {
       steps {
-        echo 'This test is done'
+        parallel(
+          "Test": {
+            echo 'This test is done'
+            
+          },
+          "Test2": {
+            sh 'ping -c 10 localhost'
+            
+          }
+        )
       }
     }
   }
