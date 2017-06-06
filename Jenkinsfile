@@ -37,7 +37,21 @@ echo $HOME'''
     }
     stage('Acceptance Test') {
       steps {
-        isUnix()
+        parallel(
+          "Acceptance Test": {
+            isUnix()
+            
+          },
+          "Check for gcloud": {
+            sh 'which cloud'
+            
+          }
+        )
+      }
+    }
+    stage('Deploy') {
+      steps {
+        sh 'echo "This software has been deployed"'
       }
     }
   }
