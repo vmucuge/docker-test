@@ -35,5 +35,10 @@ echo $HOME'''
         )
       }
     }
+    stage('Acceptance Test') {
+      steps {
+        isUnix()
+      }
+    }
   }
 }
